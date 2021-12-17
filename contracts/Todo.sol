@@ -2,11 +2,8 @@ pragma solidity >=0.4.21 <0.7.0;
 
 contract Todo {
     uint256 countTasks = 0;
-    string msg = "Hello from Ethereum";
+    string msg = "";
     struct Task {
-        uint256 id;
-        string content;
-        bool complete;
     }
 
     mapping(uint256 => Task) public tasks;
@@ -16,11 +13,8 @@ contract Todo {
     }
 
     function getGreeting() public view returns (string memory) {
-        return msg;
     }
 
     function createTask(string memory _content) public {
-        countTasks++;
-        tasks[countTasks] = Task(countTasks, _content, false);
     }
 }

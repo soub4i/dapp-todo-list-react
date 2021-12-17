@@ -9,25 +9,9 @@ export default function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const addTask = async (e) => {
-    e.preventDefault();
-    await state.contract.methods.createTask(content).send({
-      from: state.accounts[0],
-    });
-    getTasks();
-  };
+  const addTask = async (e) => {};
 
-  const getTasks = async () => {
-    if (state.contract) {
-      const count = await state.contract.methods.getCountTasks().call();
-      const tasks = [];
-      for (let index = 1; index <= count; index++) {
-        const element = await state.contract.methods.tasks(index).call();
-        tasks.push(element);
-      }
-      setTasks(tasks);
-    }
-  };
+  const getTasks = async () => {};
 
   useEffect(() => {
     const init = async () => {
@@ -44,18 +28,10 @@ export default function App() {
         accounts,
         contract,
       });
-
-      const greeting = await contract.methods.getGreeting().call();
-      setGreeting(greeting);
-      setLoading(true);
     };
 
     init();
   }, []);
-
-  useEffect(() => {
-    getTasks();
-  }, [loading]);
 
   return (
     <div>
